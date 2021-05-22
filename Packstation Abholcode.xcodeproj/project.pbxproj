@@ -13,7 +13,57 @@
 		55482E83265974C6009F6B5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55482E81265974C6009F6B5E /* Main.storyboard */; };
 		55482E85265974C8009F6B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55482E84265974C8009F6B5E /* Assets.xcassets */; };
 		55482E88265974C8009F6B5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55482E86265974C8009F6B5E /* LaunchScreen.storyboard */; };
+		55482E952659751D009F6B5E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55482E932659751D009F6B5E /* Interface.storyboard */; };
+		55482E972659751D009F6B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55482E962659751D009F6B5E /* Assets.xcassets */; };
+		55482E9E2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 55482E9D2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		55482EA32659751D009F6B5E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55482EA22659751D009F6B5E /* InterfaceController.swift */; };
+		55482EA52659751D009F6B5E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55482EA42659751D009F6B5E /* ExtensionDelegate.swift */; };
+		55482EA72659751D009F6B5E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55482EA62659751D009F6B5E /* ComplicationController.swift */; };
+		55482EA92659751E009F6B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55482EA82659751E009F6B5E /* Assets.xcassets */; };
+		55482EAD2659751E009F6B5E /* Packstation Abholcode Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 55482E912659751D009F6B5E /* Packstation Abholcode Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		55482E9F2659751D009F6B5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55482E70265974C6009F6B5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55482E9C2659751D009F6B5E;
+			remoteInfo = "Packstation Abholcode Watch Extension";
+		};
+		55482EAB2659751E009F6B5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55482E70265974C6009F6B5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55482E902659751D009F6B5E;
+			remoteInfo = "Packstation Abholcode Watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		55482EB12659751E009F6B5E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				55482E9E2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55482EB52659751E009F6B5E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				55482EAD2659751E009F6B5E /* Packstation Abholcode Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		55482E78265974C6009F6B5E /* Packstation Abholcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Packstation Abholcode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +74,27 @@
 		55482E84265974C8009F6B5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55482E87265974C8009F6B5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55482E89265974C8009F6B5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55482E912659751D009F6B5E /* Packstation Abholcode Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Packstation Abholcode Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55482E942659751D009F6B5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		55482E962659751D009F6B5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55482E982659751D009F6B5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55482E9D2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Packstation Abholcode Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55482EA22659751D009F6B5E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		55482EA42659751D009F6B5E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		55482EA62659751D009F6B5E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		55482EA82659751E009F6B5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55482EAA2659751E009F6B5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		55482E75265974C6009F6B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55482E9A2659751D009F6B5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				55482E7A265974C6009F6B5E /* Packstation Abholcode */,
+				55482E922659751D009F6B5E /* Packstation Abholcode Watch */,
+				55482EA12659751D009F6B5E /* Packstation Abholcode Watch Extension */,
 				55482E79265974C6009F6B5E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				55482E78265974C6009F6B5E /* Packstation Abholcode.app */,
+				55482E912659751D009F6B5E /* Packstation Abholcode Watch.app */,
+				55482E9D2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +138,28 @@
 			path = "Packstation Abholcode";
 			sourceTree = "<group>";
 		};
+		55482E922659751D009F6B5E /* Packstation Abholcode Watch */ = {
+			isa = PBXGroup;
+			children = (
+				55482E932659751D009F6B5E /* Interface.storyboard */,
+				55482E962659751D009F6B5E /* Assets.xcassets */,
+				55482E982659751D009F6B5E /* Info.plist */,
+			);
+			path = "Packstation Abholcode Watch";
+			sourceTree = "<group>";
+		};
+		55482EA12659751D009F6B5E /* Packstation Abholcode Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				55482EA22659751D009F6B5E /* InterfaceController.swift */,
+				55482EA42659751D009F6B5E /* ExtensionDelegate.swift */,
+				55482EA62659751D009F6B5E /* ComplicationController.swift */,
+				55482EA82659751E009F6B5E /* Assets.xcassets */,
+				55482EAA2659751E009F6B5E /* Info.plist */,
+			);
+			path = "Packstation Abholcode Watch Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,15 +170,51 @@
 				55482E74265974C6009F6B5E /* Sources */,
 				55482E75265974C6009F6B5E /* Frameworks */,
 				55482E76265974C6009F6B5E /* Resources */,
+				55482EB52659751E009F6B5E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				55482EAC2659751E009F6B5E /* PBXTargetDependency */,
 			);
 			name = "Packstation Abholcode";
 			productName = "Packstation Abholcode";
 			productReference = 55482E78265974C6009F6B5E /* Packstation Abholcode.app */;
 			productType = "com.apple.product-type.application";
+		};
+		55482E902659751D009F6B5E /* Packstation Abholcode Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55482EB22659751E009F6B5E /* Build configuration list for PBXNativeTarget "Packstation Abholcode Watch" */;
+			buildPhases = (
+				55482E8F2659751D009F6B5E /* Resources */,
+				55482EB12659751E009F6B5E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55482EA02659751D009F6B5E /* PBXTargetDependency */,
+			);
+			name = "Packstation Abholcode Watch";
+			productName = "Packstation Abholcode Watch";
+			productReference = 55482E912659751D009F6B5E /* Packstation Abholcode Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		55482E9C2659751D009F6B5E /* Packstation Abholcode Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55482EAE2659751E009F6B5E /* Build configuration list for PBXNativeTarget "Packstation Abholcode Watch Extension" */;
+			buildPhases = (
+				55482E992659751D009F6B5E /* Sources */,
+				55482E9A2659751D009F6B5E /* Frameworks */,
+				55482E9B2659751D009F6B5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Packstation Abholcode Watch Extension";
+			productName = "Packstation Abholcode Watch Extension";
+			productReference = 55482E9D2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -97,6 +226,12 @@
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					55482E77265974C6009F6B5E = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					55482E902659751D009F6B5E = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					55482E9C2659751D009F6B5E = {
 						CreatedOnToolsVersion = 12.5;
 					};
 				};
@@ -115,6 +250,8 @@
 			projectRoot = "";
 			targets = (
 				55482E77265974C6009F6B5E /* Packstation Abholcode */,
+				55482E902659751D009F6B5E /* Packstation Abholcode Watch */,
+				55482E9C2659751D009F6B5E /* Packstation Abholcode Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -127,6 +264,23 @@
 				55482E88265974C8009F6B5E /* LaunchScreen.storyboard in Resources */,
 				55482E85265974C8009F6B5E /* Assets.xcassets in Resources */,
 				55482E83265974C6009F6B5E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55482E8F2659751D009F6B5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55482E972659751D009F6B5E /* Assets.xcassets in Resources */,
+				55482E952659751D009F6B5E /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55482E9B2659751D009F6B5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55482EA92659751E009F6B5E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +297,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55482E992659751D009F6B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55482EA52659751D009F6B5E /* ExtensionDelegate.swift in Sources */,
+				55482EA32659751D009F6B5E /* InterfaceController.swift in Sources */,
+				55482EA72659751D009F6B5E /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55482EA02659751D009F6B5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55482E9C2659751D009F6B5E /* Packstation Abholcode Watch Extension */;
+			targetProxy = 55482E9F2659751D009F6B5E /* PBXContainerItemProxy */;
+		};
+		55482EAC2659751E009F6B5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55482E902659751D009F6B5E /* Packstation Abholcode Watch */;
+			targetProxy = 55482EAB2659751E009F6B5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		55482E81265974C6009F6B5E /* Main.storyboard */ = {
@@ -160,6 +337,14 @@
 				55482E87265974C8009F6B5E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		55482E932659751D009F6B5E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55482E942659751D009F6B5E /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -319,6 +504,90 @@
 			};
 			name = Release;
 		};
+		55482EAF2659751E009F6B5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6M5BCW6QH8;
+				INFOPLIST_FILE = "Packstation Abholcode Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		55482EB02659751E009F6B5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6M5BCW6QH8;
+				INFOPLIST_FILE = "Packstation Abholcode Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
+		55482EB32659751E009F6B5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6M5BCW6QH8;
+				IBSC_MODULE = Packstation_Abholcode_Watch_Extension;
+				INFOPLIST_FILE = "Packstation Abholcode Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		55482EB42659751E009F6B5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6M5BCW6QH8;
+				IBSC_MODULE = Packstation_Abholcode_Watch_Extension;
+				INFOPLIST_FILE = "Packstation Abholcode Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -336,6 +605,24 @@
 			buildConfigurations = (
 				55482E8D265974C8009F6B5E /* Debug */,
 				55482E8E265974C8009F6B5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55482EAE2659751E009F6B5E /* Build configuration list for PBXNativeTarget "Packstation Abholcode Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55482EAF2659751E009F6B5E /* Debug */,
+				55482EB02659751E009F6B5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55482EB22659751E009F6B5E /* Build configuration list for PBXNativeTarget "Packstation Abholcode Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55482EB32659751E009F6B5E /* Debug */,
+				55482EB42659751E009F6B5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
