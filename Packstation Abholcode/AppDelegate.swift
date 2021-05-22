@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
+        let scopes = ["https://mail.google.com/"]
+
         GIDSignIn.sharedInstance().clientID = "1001861973687-prq3tv6fnq7uemufam1pkrjj14j5jurc.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.scopes = scopes
         GIDSignIn.sharedInstance().delegate = self
 
         return true
