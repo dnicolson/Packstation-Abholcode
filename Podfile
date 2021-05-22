@@ -5,7 +5,8 @@ target 'Packstation Abholcode' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Packstation Abholcode
+  pod 'GoogleSignIn'
+  pod 'GoogleAPIClientForREST/Gmail'
 
 end
 
@@ -21,6 +22,6 @@ target 'Packstation Abholcode Watch Extension' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Packstation Abholcode Watch Extension
+  pod 'GoogleAPIClientForREST/Gmail'
 
 end
