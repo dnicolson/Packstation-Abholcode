@@ -18,7 +18,6 @@
 		55482E9E2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 55482E9D2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55482EA32659751D009F6B5E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55482EA22659751D009F6B5E /* InterfaceController.swift */; };
 		55482EA52659751D009F6B5E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55482EA42659751D009F6B5E /* ExtensionDelegate.swift */; };
-		55482EA72659751D009F6B5E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55482EA62659751D009F6B5E /* ComplicationController.swift */; };
 		55482EA92659751E009F6B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55482EA82659751E009F6B5E /* Assets.xcassets */; };
 		55482EAD2659751E009F6B5E /* Packstation Abholcode Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 55482E912659751D009F6B5E /* Packstation Abholcode Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -81,7 +80,6 @@
 		55482E9D2659751D009F6B5E /* Packstation Abholcode Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Packstation Abholcode Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55482EA22659751D009F6B5E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		55482EA42659751D009F6B5E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		55482EA62659751D009F6B5E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		55482EA82659751E009F6B5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55482EAA2659751E009F6B5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,7 +151,6 @@
 			children = (
 				55482EA22659751D009F6B5E /* InterfaceController.swift */,
 				55482EA42659751D009F6B5E /* ExtensionDelegate.swift */,
-				55482EA62659751D009F6B5E /* ComplicationController.swift */,
 				55482EA82659751E009F6B5E /* Assets.xcassets */,
 				55482EAA2659751E009F6B5E /* Info.plist */,
 			);
@@ -303,7 +300,6 @@
 			files = (
 				55482EA52659751D009F6B5E /* ExtensionDelegate.swift in Sources */,
 				55482EA32659751D009F6B5E /* InterfaceController.swift in Sources */,
-				55482EA72659751D009F6B5E /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +503,6 @@
 		55482EAF2659751E009F6B5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6M5BCW6QH8;
 				INFOPLIST_FILE = "Packstation Abholcode Watch Extension/Info.plist";
@@ -529,7 +524,6 @@
 		55482EB02659751E009F6B5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6M5BCW6QH8;
 				INFOPLIST_FILE = "Packstation Abholcode Watch Extension/Info.plist";
