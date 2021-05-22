@@ -7,11 +7,13 @@
 
 import UIKit
 import GoogleSignIn
+import GTMAppAuth
 
 class ViewController: UIViewController {
 
     @IBAction func didTapSignOut(_ sender: AnyObject) {
         GIDSignIn.sharedInstance().signOut()
+        GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
     }
 
     override func viewDidLoad() {

@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import GTMAppAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -59,6 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let email = user.profile.email
 
         print(fullName! + " " + email!)
+        let authorizer = GIDSignIn.sharedInstance()?.currentUser?.authentication?.fetcherAuthorizer()
+        GTMAppAuthFetcherAuthorization.save(authorizer as! GTMAppAuthFetcherAuthorization, toKeychainForName: "Gmail")
     }
 
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
