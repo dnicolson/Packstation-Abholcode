@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         print(fullName! + " " + email!)
         let authorizer = GIDSignIn.sharedInstance()?.currentUser?.authentication?.fetcherAuthorizer()
         GTMAppAuthFetcherAuthorization.save(authorizer as! GTMAppAuthFetcherAuthorization, toKeychainForName: "Gmail")
+        NotificationCenter.default.post(name: .signInGoogleCompleted, object: nil)
     }
 
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
@@ -75,3 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 }
 
+// MARK: Notification Names
+extension Notification.Name {
+    static var signInGoogleCompleted: Notification.Name {
+        return .init(rawValue: #function)
+    }
+}
