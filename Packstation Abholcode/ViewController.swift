@@ -55,6 +55,25 @@ class ViewController: UIViewController {
         return .portrait
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillEnterForeground(_:)),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc func applicationWillEnterForeground(_ notification: NSNotification) {
+        updateAbholcode()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
