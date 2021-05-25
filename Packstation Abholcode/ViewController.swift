@@ -101,12 +101,14 @@ class ViewController: UIViewController {
         introLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         introLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 140).isActive = true
         introLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        introLabel.isHidden = true
 
         signInButton = GIDSignInButton()
         view.addSubview(signInButton)
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         signInButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        signInButton.isHidden = true
 
         let packstationImage = UIImage(named: "icon-packstation-red.png")
         let packstationImageView = UIImageView(image: packstationImage!)
@@ -156,7 +158,6 @@ class ViewController: UIViewController {
         abholcodeView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         abholcodeView.widthAnchor.constraint(equalToConstant: 160).isActive = true
         abholcodeView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-
         abholcodeView.isHidden = true
 
         GIDSignIn.sharedInstance()?.presentingViewController = self
@@ -166,9 +167,6 @@ class ViewController: UIViewController {
                                                selector: #selector(userDidSignInGoogle(_:)),
                                                name: .signInGoogleCompleted,
                                                object: nil)
-
-        updateScreen()
-        updateAbholcode()
     }
 
     func updateScreen() {
