@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         view.addSubview(headerLabel)
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
 
         introLabel = UILabel()
         introLabel.text = "You need to sign in to Gmail to allow the Abholcode to be found."
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         view.addSubview(packstationImageView)
         packstationImageView.translatesAutoresizingMaskIntoConstraints = false
         packstationImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        packstationImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        packstationImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25).isActive = true
         packstationImageView.widthAnchor.constraint(equalToConstant: 300).isActive = true
         packstationImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
 
@@ -107,7 +107,7 @@ class ViewController: UIViewController {
         view.addSubview(signOutButton)
         signOutButton.translatesAutoresizingMaskIntoConstraints = false
         signOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        signOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        signOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
         signOutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         signOutButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
 
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
         abholcodeView.addSubview(abholcodeLabel)
         abholcodeLabel.translatesAutoresizingMaskIntoConstraints = false
         abholcodeLabel.centerXAnchor.constraint(equalTo: abholcodeView.centerXAnchor).isActive = true
-        abholcodeLabel.bottomAnchor.constraint(equalTo: abholcodeView.bottomAnchor, constant: -10).isActive = true
+        abholcodeLabel.bottomAnchor.constraint(equalTo: abholcodeView.bottomAnchor, constant: -8).isActive = true
 
         view.addSubview(abholcodeView)
         abholcodeView.translatesAutoresizingMaskIntoConstraints = false
@@ -149,6 +149,7 @@ class ViewController: UIViewController {
                                                object: nil)
 
         updateScreen()
+        updateAbholcode()
     }
 
     func updateScreen() {
