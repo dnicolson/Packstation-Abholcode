@@ -1,15 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="18122" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Packstation_Abholcode_Watch" customModuleProvider="target">
+                    <items>
+                        <label alignment="left" text="Abholcode:" id="naQ-xC-q9i" userLabel="Abholcode label"/>
+                        <label height="20" alignment="left" id="iUx-uR-GKy" userLabel="Abholcode"/>
+                        <label alignment="left" text="Last updated:" id="h5c-nQ-DDT" userLabel="Last updated label"/>
+                        <label height="20" alignment="left" id="9cy-0T-26Y" userLabel="Last updated"/>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Refresh" id="STY-63-L9G">
+                            <connections>
+                                <action selector="refreshTapped" destination="AgC-eL-Hgc" id="Img-Gn-NBc"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="abholcode" destination="iUx-uR-GKy" id="eKY-Zb-02U"/>
+                        <outlet property="lastUpdated" destination="9cy-0T-26Y" id="Sb2-KU-NBM"/>
+                    </connections>
+                </controller>
             </objects>
+            <point key="canvasLocation" x="-26" y="-44"/>
         </scene>
     </scenes>
 </document>

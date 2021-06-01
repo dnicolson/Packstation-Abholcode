@@ -6,21 +6,156 @@
 //
 
 import WatchKit
+import WatchConnectivity
 import Foundation
+import GTMAppAuth
+import GoogleAPIClientForREST
 
+extension String {
+    func urlSafeBase64Decoded() -> String? {
+        var st = self
+            .replacingOccurrences(of: "_", with: "/")
+            .replacingOccurrences(of: "-", with: "+")
+        let remainder = self.count % 4
+        if remainder > 0 {
+            st = self.padding(toLength: self.count + 4 - remainder,
+                              withPad: "=",
+                              startingAt: 0)
+        }
+        guard let d = Data(base64Encoded: st, options: .ignoreUnknownCharacters) else{
+            return nil
+        }
+        return String(data: d, encoding: .utf8)
+    }
+}
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    }
+
+    @IBOutlet weak var abholcode: WKInterfaceLabel!
+    @IBOutlet weak var lastUpdated: WKInterfaceLabel!
+    @IBOutlet weak var refreshButton: WKInterfaceButton!
+
+    func queryAbholcode(authorizer: GTMFetcherAuthorizationProtocol, completion : @escaping (String) -> Void) {
+        let gmailService = GTLRGmailService.init()
+        //let authorizer = GIDSignIn.sharedInstance()?.currentUser?.authentication?.fetcherAuthorizer()
+        gmailService.authorizer = authorizer
+
+        let listQuery = GTLRGmailQuery_UsersMessagesList.query(withUserId: "me")
+        listQuery.q = "from:noreply.packstation@dhl.de subject:Abholcode"
+        listQuery.labelIds = ["INBOX"]
+
+        gmailService.executeQuery(listQuery) { (ticket, response, error) in
+            if response != nil {
+                let response = response as! GTLRGmail_ListMessagesResponse
+                let identifier = response.messages![0].identifier
+                let messageQuery = GTLRGmailQuery_UsersMessagesGet.query(withUserId: "me", identifier: identifier ?? "")
+                messageQuery.identifier = identifier
+
+                gmailService.executeQuery(messageQuery) { (ticket, response, error) in
+                    if response != nil {
+                        let message = response as! GTLRGmail_Message
+                        let base64encodedData = message.payload?.parts?[0].parts?[0].body?.data!
+                        let str = base64encodedData!.urlSafeBase64Decoded()!
+
+                        let pattern = "\n([0-9]{4})"
+                        let regex = try! NSRegularExpression(pattern: pattern)
+                        let result = regex.firstMatch(in:str, range:NSMakeRange(0, str.utf16.count))
+                        let range = result!.range(at:1)
+                        if let swiftRange = Range(range, in: str) {
+                            let name = str[swiftRange]
+                            print(name)
+                            completion(String(name) as String)
+                        }
+                    } else {
+                        print("Error: ")
+                        print(error!)
+                    }
+                }
+            } else {
+                print("Error: ")
+                print(error!)
+            }
+        }
+    }
+
+    @IBAction func refreshTapped() {
+        let today : String!
+        today = getTodayString()
+        lastUpdated.setText(today)
+        abholcode.setText("")
+
+        NSKeyedUnarchiver.setClass(GTMAppAuthFetcherAuthorization.self, forClassName: "GTMAppAuthFetcherAuthorizationWithEMMSupport")
+        let authorizer = GTMAppAuthFetcherAuthorization(fromKeychainForName: "Gmail")
+
+        if (authorizer != nil) {
+            queryAbholcode(authorizer: authorizer!) {(code: String) in
+                self.abholcode.setText(code)
+            }
+        } else {
+            print("No Keychain item")
+        }
+    }
+
+    let session = WCSession.default
 
     override func awake(withContext context: Any?) {
-        // Configure interface objects here.
-    }
-    
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-    }
-    
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
+        super.awake(withContext: context)
+        session.delegate = self
+        session.activate()
     }
 
+    func addToKeychain(_ value: Data) -> Bool {
+        let attributes: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrGeneric as String: "OAuth",
+            kSecAttrAccount as String: "OAuth",
+            kSecAttrService as String: "Gmail",
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
+            kSecValueData as String: value
+        ]
+
+        var result: CFTypeRef? = nil
+        let status = SecItemAdd(attributes as CFDictionary, &result)
+        if status == errSecSuccess {
+            print("Password successfully added to Keychain.")
+        } else {
+            if let error: String = SecCopyErrorMessageString(status, nil) as String? {
+                print(error)
+            }
+            return false
+        }
+        return true
+    }
+
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        var reply = Data(bytes: [0], count: 1)
+        if (messageData.count == 0) {
+            GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
+            reply = Data(bytes: [1], count: 1) //needed?
+        } else if (addToKeychain(messageData)) {
+            reply = Data(bytes: [1], count: 1)
+        }
+
+        replyHandler(reply)
+    }
+
+    func getTodayString() -> String{
+        let date = Date()
+        let calender = Calendar.current
+        let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+
+        let year = components.year
+        let month = components.month
+        let day = components.day
+        let hour = components.hour
+        let minute = components.minute
+        let second = components.second
+
+        let today_string = String(year!) + "-" + String(month!) + "-" + String(day!) + " " + String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
+
+        return today_string
+    }
 }

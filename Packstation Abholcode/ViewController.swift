@@ -9,6 +9,7 @@ import UIKit
 import GoogleSignIn
 import GTMAppAuth
 import GoogleAPIClientForREST
+import WatchConnectivity
 
 extension String {
     func urlSafeBase64Decoded() -> String? {
@@ -28,23 +29,36 @@ extension String {
     }
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WCSessionDelegate {
+    func sessionDidBecomeInactive(_ session: WCSession) {
+    }
+
+    func sessionDidDeactivate(_ session: WCSession) {
+    }
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    }
 
     var headerLabel: UILabel!
     var introLabel: UILabel!
     var signInButton: GIDSignInButton!
     var signOutButton: UIButton!
     var abholcodeView: UIView!
+    var session: WCSession?
 
     @objc func signOutButtonTapped(_ sender: AnyObject) {
         GIDSignIn.sharedInstance().signOut()
         GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
+        sendKeychainItemToWatch(keychainItemData: Data())
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "WatchGmailAuth")
         updateScreen()
     }
 
     @objc func userDidSignInGoogle(_ notification: Notification) {
         updateScreen()
         updateAbholcode()
+        sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
     }
 
     override var shouldAutorotate: Bool {
@@ -77,6 +91,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session?.delegate = self
+            session?.activate()
+        }
+
         overrideUserInterfaceStyle = .light
 
         view.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0, alpha: 1)
@@ -91,7 +111,12 @@ class ViewController: UIViewController {
         headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
 
         introLabel = UILabel()
-        introLabel.text = "You need to sign in to Gmail to allow the Abholcode to be found."
+        let defaults = UserDefaults.standard
+        if (defaults.bool(forKey: "WatchGmailAuth")) {
+            introLabel.text = "The Abholcode is also available on your Apple Watch."
+        } else {
+            introLabel.text = "You need to sign in to Gmail to allow the Abholcode to be found. The Abholcode will also be available on a paired Apple Watch."
+        }
         introLabel.textAlignment = .center
         introLabel.lineBreakMode = .byWordWrapping
         introLabel.numberOfLines = 0
@@ -167,6 +192,9 @@ class ViewController: UIViewController {
                                                selector: #selector(userDidSignInGoogle(_:)),
                                                name: .signInGoogleCompleted,
                                                object: nil)
+
+        updateScreen()
+        updateAbholcode()
     }
 
     func updateScreen() {
@@ -235,6 +263,39 @@ class ViewController: UIViewController {
                 print("Error: ")
                 print(error!)
             }
+        }
+    }
+
+    func getKeychainItemData() -> Data? {
+        let getquery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                                       kSecAttrGeneric as String: "OAuth",
+                                       kSecAttrAccount as String: "OAuth",
+                                       kSecAttrService as String: "Gmail",
+                                       kSecReturnData as String: kCFBooleanTrue!,
+                                       kSecMatchLimit as String : kSecMatchLimitOne]
+
+        var item: CFTypeRef?
+        let status = SecItemCopyMatching(getquery as CFDictionary, &item)
+
+        guard status == errSecSuccess else {
+            print("keyStore.retrieve SecItemCopyMatching error \(status)")
+            return nil
+        }
+
+        guard let data = item as? Data? else {
+            print("keyStore.retrieve not data")
+            return nil
+        }
+
+        return data
+    }
+
+    func sendKeychainItemToWatch(keychainItemData: Data) {
+        session!.sendMessageData(keychainItemData, replyHandler: { (data) in
+            let success = data[0] == 1
+            let defaults = UserDefaults.standard
+            defaults.set(success, forKey: "WatchGmailAuth")}) { (error) in
+                print(error)
         }
     }
 }
