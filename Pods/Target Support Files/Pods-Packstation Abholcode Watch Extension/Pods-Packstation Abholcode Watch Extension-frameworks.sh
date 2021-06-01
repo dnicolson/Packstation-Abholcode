@@ -175,10 +175,14 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AppAuth-Core/AppAuth.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GTMAppAuth-watchOS/GTMAppAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-watchOS/GTMSessionFetcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST-watchOS/GoogleAPIClientForREST.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AppAuth-Core/AppAuth.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GTMAppAuth-watchOS/GTMAppAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-watchOS/GTMSessionFetcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST-watchOS/GoogleAPIClientForREST.framework"
 fi

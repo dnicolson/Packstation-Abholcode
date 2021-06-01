@@ -22,6 +22,7 @@ target 'Packstation Abholcode Watch Extension' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
+  pod 'GTMAppAuth'
   pod 'GoogleAPIClientForREST/Gmail'
 
 end
