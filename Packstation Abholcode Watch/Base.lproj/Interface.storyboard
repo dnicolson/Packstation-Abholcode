@@ -11,23 +11,32 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Packstation_Abholcode_Watch" customModuleProvider="target">
                     <items>
-                        <label alignment="left" text="Abholcode:" id="naQ-xC-q9i" userLabel="Abholcode label"/>
-                        <label height="20" alignment="left" id="iUx-uR-GKy" userLabel="Abholcode"/>
-                        <label alignment="left" text="Last updated:" id="h5c-nQ-DDT" userLabel="Last updated label"/>
-                        <label height="20" alignment="left" id="9cy-0T-26Y" userLabel="Last updated"/>
-                        <button width="1" alignment="left" verticalAlignment="bottom" title="Refresh" id="STY-63-L9G">
-                            <connections>
-                                <action selector="refreshTapped" destination="AgC-eL-Hgc" id="Img-Gn-NBc"/>
-                            </connections>
-                        </button>
+                        <label alignment="left" hidden="YES" text="Sign in to Gmail on the paired iPhone to display the Abholcode." textAlignment="center" numberOfLines="5" id="b4a-be-u06"/>
+                        <group width="100" height="60" alignment="center" verticalAlignment="center" layout="vertical" radius="5" id="uhs-lQ-wiO">
+                            <items>
+                                <label alignment="center" verticalAlignment="bottom" id="iUx-uR-GKy" userLabel="Abholcode">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="font" type="system" weight="semibold" pointSize="31"/>
+                                </label>
+                                <label alignment="center" text="Abholcode" id="naQ-xC-q9i" userLabel="Abholcode label">
+                                    <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </group>
+                        <imageView width="56" height="56" alignment="center" verticalAlignment="bottom" image="icon-packstation-red-watch-cropped" contentMode="scaleAspectFit" id="h5r-1X-M2B"/>
                     </items>
                     <connections>
-                        <outlet property="abholcode" destination="iUx-uR-GKy" id="eKY-Zb-02U"/>
-                        <outlet property="lastUpdated" destination="9cy-0T-26Y" id="Sb2-KU-NBM"/>
+                        <outlet property="abholcode" destination="iUx-uR-GKy" id="lHQ-jP-X6J"/>
+                        <outlet property="abholcodeGroup" destination="uhs-lQ-wiO" id="Jxy-2k-PE7"/>
+                        <outlet property="introText" destination="b4a-be-u06" id="SVt-MT-8Le"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-26" y="-44"/>
+            <point key="canvasLocation" x="-26" y="-75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-packstation-red-watch-cropped" width="400" height="250"/>
+    </resources>
 </document>

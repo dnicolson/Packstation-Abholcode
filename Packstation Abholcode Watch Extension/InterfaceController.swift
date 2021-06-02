@@ -34,9 +34,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
 
+    @IBOutlet weak var introText: WKInterfaceLabel!
+    @IBOutlet weak var abholcodeGroup: WKInterfaceGroup!
     @IBOutlet weak var abholcode: WKInterfaceLabel!
-    @IBOutlet weak var lastUpdated: WKInterfaceLabel!
-    @IBOutlet weak var refreshButton: WKInterfaceButton!
 
     func queryAbholcode(authorizer: GTMFetcherAuthorizationProtocol, completion : @escaping (String) -> Void) {
         let gmailService = GTLRGmailService.init()
@@ -81,30 +81,30 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
 
-    @IBAction func refreshTapped() {
-        let today : String!
-        today = getTodayString()
-        lastUpdated.setText(today)
-        abholcode.setText("")
+    let session = WCSession.default
 
+    func updateAbholcode() {
         NSKeyedUnarchiver.setClass(GTMAppAuthFetcherAuthorization.self, forClassName: "GTMAppAuthFetcherAuthorizationWithEMMSupport")
         let authorizer = GTMAppAuthFetcherAuthorization(fromKeychainForName: "Gmail")
 
         if (authorizer != nil) {
             queryAbholcode(authorizer: authorizer!) {(code: String) in
                 self.abholcode.setText(code)
+                self.introText.setHidden(true)
+                self.abholcodeGroup.setHidden(false)
             }
         } else {
-            print("No Keychain item")
+            introText.setHidden(false)
+            abholcodeGroup.setHidden(true)
         }
     }
-
-    let session = WCSession.default
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         session.delegate = self
         session.activate()
+
+        updateAbholcode()
     }
 
     func addToKeychain(_ value: Data) -> Bool {
@@ -138,23 +138,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             reply = WKInterfaceDevice.current().name.data(using: .utf8)!
         }
 
+        updateAbholcode()
         replyHandler(reply)
-    }
-
-    func getTodayString() -> String{
-        let date = Date()
-        let calender = Calendar.current
-        let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
-
-        let year = components.year
-        let month = components.month
-        let day = components.day
-        let hour = components.hour
-        let minute = components.minute
-        let second = components.second
-
-        let today_string = String(year!) + "-" + String(month!) + "-" + String(day!) + " " + String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
-
-        return today_string
     }
 }
