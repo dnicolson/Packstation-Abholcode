@@ -131,12 +131,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
 
     func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
-        var reply = Data(bytes: [0], count: 1)
+        var reply = Data()
         if (messageData.count == 0) {
             GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
-            reply = Data(bytes: [1], count: 1) //needed?
         } else if (addToKeychain(messageData)) {
-            reply = Data(bytes: [1], count: 1)
+            reply = WKInterfaceDevice.current().name.data(using: .utf8)!
         }
 
         replyHandler(reply)

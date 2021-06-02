@@ -41,6 +41,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
     var headerLabel: UILabel!
     var introLabel: UILabel!
+    var defaultIntroText: String = "You need to sign in to Gmail to allow the Abholcode to be found.\n\nThe Abholcode will also be available on a paired Apple Watch."
     var signInButton: GIDSignInButton!
     var signOutButton: UIButton!
     var abholcodeView: UIView!
@@ -49,16 +50,19 @@ class ViewController: UIViewController, WCSessionDelegate {
     @objc func signOutButtonTapped(_ sender: AnyObject) {
         GIDSignIn.sharedInstance().signOut()
         GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
-        sendKeychainItemToWatch(keychainItemData: Data())
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "WatchGmailAuth")
+        if (session!.isPaired) {
+            sendKeychainItemToWatch(keychainItemData: Data())
+            UserDefaults.standard.removeObject(forKey: "AppleWatchName")
+        }
         updateScreen()
     }
 
     @objc func userDidSignInGoogle(_ notification: Notification) {
         updateScreen()
         updateAbholcode()
-        sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
+        if (session!.isPaired) {
+            sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
+        }
     }
 
     override var shouldAutorotate: Bool {
@@ -97,6 +101,8 @@ class ViewController: UIViewController, WCSessionDelegate {
             session?.activate()
         }
 
+        let appleWatchName = UserDefaults.standard.string(forKey: "AppleWatchName")
+
         overrideUserInterfaceStyle = .light
 
         view.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0, alpha: 1)
@@ -111,11 +117,10 @@ class ViewController: UIViewController, WCSessionDelegate {
         headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
 
         introLabel = UILabel()
-        let defaults = UserDefaults.standard
-        if (defaults.bool(forKey: "WatchGmailAuth")) {
-            introLabel.text = "The Abholcode is also available on your Apple Watch."
+        if (appleWatchName != nil) {
+            introLabel.text = "The Abholcode is also available on " + appleWatchName! + "."
         } else {
-            introLabel.text = "You need to sign in to Gmail to allow the Abholcode to be found. The Abholcode will also be available on a paired Apple Watch."
+            introLabel.text = defaultIntroText
         }
         introLabel.textAlignment = .center
         introLabel.lineBreakMode = .byWordWrapping
@@ -124,9 +129,8 @@ class ViewController: UIViewController, WCSessionDelegate {
         view.addSubview(introLabel)
         introLabel.translatesAutoresizingMaskIntoConstraints = false
         introLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        introLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 140).isActive = true
+        introLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 60).isActive = true
         introLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        introLabel.isHidden = true
 
         signInButton = GIDSignInButton()
         view.addSubview(signInButton)
@@ -195,15 +199,19 @@ class ViewController: UIViewController, WCSessionDelegate {
 
         updateScreen()
         updateAbholcode()
+
+        if (session!.isPaired && appleWatchName == nil) {
+            if ((GIDSignIn.sharedInstance()!.currentUser) != nil) {
+                sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
+            }
+        }
     }
 
     func updateScreen() {
         if GIDSignIn.sharedInstance()?.currentUser != nil {
-            introLabel.isHidden = true
             signInButton.isHidden = true
             signOutButton.isHidden = false
         } else {
-            introLabel.isHidden = false
             signInButton.isHidden = false
             signOutButton.isHidden = true
             abholcodeView.isHidden = true
@@ -292,10 +300,24 @@ class ViewController: UIViewController, WCSessionDelegate {
 
     func sendKeychainItemToWatch(keychainItemData: Data) {
         session!.sendMessageData(keychainItemData, replyHandler: { (data) in
-            let success = data[0] == 1
-            let defaults = UserDefaults.standard
-            defaults.set(success, forKey: "WatchGmailAuth")}) { (error) in
-                print(error)
+            let appleWatchName = String(data: data, encoding: .utf8)
+            DispatchQueue.main.async {
+                if (keychainItemData.count > 0 && appleWatchName != nil) {
+                    UserDefaults.standard.set(appleWatchName, forKey: "AppleWatchName")
+                    self.introLabel.text = appleWatchName! + " has been setup successfully."
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "AppleWatchName")
+                    self.introLabel.text = self.defaultIntroText
+                }
+            }
+        }) { (error) in
+            DispatchQueue.main.async {
+                if (keychainItemData.count > 0) {
+                    self.introLabel.text = "An error occurred communicating with the Apple Watch:\n\n\"" + error.localizedDescription + "\"\n\nEnsure that the Abholcode app is open on the Apple Watch and sign in again."
+                } else {
+                    self.introLabel.text = self.defaultIntroText
+                }
+            }
         }
     }
 }
