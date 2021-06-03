@@ -132,6 +132,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             print("Password successfully added to Keychain.")
         } else {
             if let error: String = SecCopyErrorMessageString(status, nil) as String? {
+                if (error == "The specified item already exists in the keychain.") {
+                    return true
+                }
                 print(error)
             }
             return false
