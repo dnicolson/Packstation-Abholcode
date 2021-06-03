@@ -83,6 +83,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     let session = WCSession.default
 
+    @objc func applicationIsActive(_ notification: Notification) {
+        updateAbholcode()
+    }
+
     func updateAbholcode() {
         NSKeyedUnarchiver.setClass(GTMAppAuthFetcherAuthorization.self, forClassName: "GTMAppAuthFetcherAuthorizationWithEMMSupport")
         let authorizer = GTMAppAuthFetcherAuthorization(fromKeychainForName: "Gmail")
@@ -103,6 +107,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         super.awake(withContext: context)
         session.delegate = self
         session.activate()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationIsActive(_:)),
+                                               name: .applicationIsActive,
+                                               object: nil)
 
         updateAbholcode()
     }
