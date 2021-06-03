@@ -167,7 +167,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
         let abholcodeTextLabel = UILabel()
         abholcodeTextLabel.text = "Abholcode"
-        abholcodeTextLabel.textColor = .gray
+        abholcodeTextLabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.45)
         abholcodeTextLabel.font = UIFont.boldSystemFont(ofSize: 18)
         abholcodeView.addSubview(abholcodeTextLabel)
         abholcodeTextLabel.translatesAutoresizingMaskIntoConstraints = false
