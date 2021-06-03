@@ -303,7 +303,8 @@ class ViewController: UIViewController, WCSessionDelegate {
         return data
     }
 
-    func sendKeychainItemToWatch(keychainItemData: Data) {
+    func sendKeychainItemToWatch(keychainItemData: Data, retries: Int? = -1) {
+        introLabel.text = "Attempting to connect to Apple Watch...\n\nEnsure that the Abholcode app is open on the Apple Watch."
         session!.sendMessageData(keychainItemData, replyHandler: { (data) in
             let appleWatchName = String(data: data, encoding: .utf8)
             DispatchQueue.main.async {
@@ -318,7 +319,18 @@ class ViewController: UIViewController, WCSessionDelegate {
         }) { (error) in
             DispatchQueue.main.async {
                 if (keychainItemData.count > 0) {
-                    self.introLabel.text = "An error occurred communicating with the Apple Watch:\n\n\"" + error.localizedDescription + "\"\n\nEnsure that the Abholcode app is open on the Apple Watch and sign in again."
+                    if (retries == -1) {
+                        self.sendKeychainItemToWatch(keychainItemData: keychainItemData, retries: 10)
+                    }
+                    if (retries! > 0) {
+                        let newRetries = retries! - 1
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                            self.sendKeychainItemToWatch(keychainItemData: keychainItemData, retries: newRetries)
+                        }
+                    }
+                    if (retries == 0) {
+                        self.introLabel.text = "An error occurred communicating with the Apple Watch:\n\n\"" + error.localizedDescription + "\"\n\nEnsure that the Abholcode app is open on the Apple Watch and sign in again."
+                    }
                 } else {
                     self.introLabel.text = self.defaultIntroText
                 }
