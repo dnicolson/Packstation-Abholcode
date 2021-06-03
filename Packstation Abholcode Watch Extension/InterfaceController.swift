@@ -112,8 +112,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                                                selector: #selector(applicationIsActive(_:)),
                                                name: .applicationIsActive,
                                                object: nil)
-
-        updateAbholcode()
     }
 
     func addToKeychain(_ value: Data) -> Bool {
