@@ -41,7 +41,6 @@ class ViewController: UIViewController, WCSessionDelegate {
 
     var headerLabel: UILabel!
     var introLabel: UILabel!
-    var defaultIntroText: String = "You need to sign in to Gmail to allow the Abholcode to be found.\n\nOpen the Abholcode app on a paired Apple Watch before signing in to make the Abholcode available."
     var signInButton: GIDSignInButton!
     var signOutButton: UIButton!
     var abholcodeView: UIView!
@@ -118,9 +117,9 @@ class ViewController: UIViewController, WCSessionDelegate {
 
         introLabel = UILabel()
         if (appleWatchName != nil) {
-            introLabel.text = "The Abholcode is also available on " + appleWatchName! + "."
+            introLabel.text = NSLocalizedString("Abholcode available", comment: "Availability text after successful pairing") + appleWatchName! + "."
         } else {
-            introLabel.text = defaultIntroText
+            introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
         }
         introLabel.textAlignment = .center
         introLabel.lineBreakMode = .byWordWrapping
@@ -151,7 +150,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
         signOutButton = UIButton()
         signOutButton.layer.cornerRadius = 10
-        signOutButton.setTitle("Sign out", for: .normal)
+        signOutButton.setTitle(NSLocalizedString("Sign out", comment: "Sign out"), for: .normal)
         signOutButton.setTitleColor(UIColor(named: "AccentColor"), for: .normal)
         signOutButton.backgroundColor = .systemFill
         signOutButton.addTarget(self, action: #selector(signOutButtonTapped(_:)), for: .touchUpInside)
@@ -304,16 +303,16 @@ class ViewController: UIViewController, WCSessionDelegate {
     }
 
     func sendKeychainItemToWatch(keychainItemData: Data, retries: Int? = -1) {
-        introLabel.text = "Attempting to connect to Apple Watch...\n\nEnsure that the Abholcode app is open on the Apple Watch."
+        introLabel.text = NSLocalizedString("Apple Watch connecting", comment: "Attempting to connect to Apple Watch")
         session!.sendMessageData(keychainItemData, replyHandler: { (data) in
             let appleWatchName = String(data: data, encoding: .utf8)
             DispatchQueue.main.async {
                 if (keychainItemData.count > 0 && appleWatchName != nil) {
                     UserDefaults.standard.set(appleWatchName, forKey: "AppleWatchName")
-                    self.introLabel.text = appleWatchName! + " has been setup successfully."
+                    self.introLabel.text = appleWatchName! + NSLocalizedString("Apple Watch success", comment: "Successful connection to Apple Watch")
                 } else {
                     UserDefaults.standard.removeObject(forKey: "AppleWatchName")
-                    self.introLabel.text = self.defaultIntroText
+                    self.introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
                 }
             }
         }) { (error) in
@@ -329,10 +328,10 @@ class ViewController: UIViewController, WCSessionDelegate {
                         }
                     }
                     if (retries == 0) {
-                        self.introLabel.text = "An error occurred communicating with the Apple Watch:\n\n\"" + error.localizedDescription + "\"\n\nEnsure that the Abholcode app is open on the Apple Watch and sign in again."
+                        self.introLabel.text = NSLocalizedString("Apple Watch connection error part 1", comment: "Attempting to connect to Apple Watch failed part 1") + error.localizedDescription + NSLocalizedString("Apple Watch connection error part 2", comment: "Attempting to connect to Apple Watch failed part 2")
                     }
                 } else {
-                    self.introLabel.text = self.defaultIntroText
+                    self.introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
                 }
             }
         }

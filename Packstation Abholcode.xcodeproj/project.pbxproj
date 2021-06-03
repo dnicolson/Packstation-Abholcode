@@ -21,6 +21,7 @@
 		55482EA52659751D009F6B5E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55482EA42659751D009F6B5E /* ExtensionDelegate.swift */; };
 		55482EA92659751E009F6B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55482EA82659751E009F6B5E /* Assets.xcassets */; };
 		55482EAD2659751E009F6B5E /* Packstation Abholcode Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 55482E912659751D009F6B5E /* Packstation Abholcode Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		55A1F6012669708A0097D076 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A1F6032669708A0097D076 /* Localizable.strings */; };
 		A30F7A8CFD94378FFE880C27 /* Pods_Packstation_Abholcode_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39042FCB4A7B215F734D7AB /* Pods_Packstation_Abholcode_Watch_Extension.framework */; };
 		ED0D7D541C9B38A204154C10 /* Pods_Packstation_Abholcode_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729A8CD001CD5AC21F7C903E /* Pods_Packstation_Abholcode_Watch.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,9 @@
 		55482EA42659751D009F6B5E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		55482EA82659751E009F6B5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55482EAA2659751E009F6B5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55A1F5FE26696ECA0097D076 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Interface.strings; sourceTree = "<group>"; };
+		55A1F6022669708A0097D076 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55A1F6042669708D0097D076 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57476D8F92AE0D7C50A92E70 /* Pods-Packstation Abholcode Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packstation Abholcode Watch Extension.debug.xcconfig"; path = "Target Support Files/Pods-Packstation Abholcode Watch Extension/Pods-Packstation Abholcode Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		6BEDD287E638EDAF84684716 /* Pods-Packstation Abholcode Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packstation Abholcode Watch.release.xcconfig"; path = "Target Support Files/Pods-Packstation Abholcode Watch/Pods-Packstation Abholcode Watch.release.xcconfig"; sourceTree = "<group>"; };
 		6C00E8013CEB09AB31B1595B /* Pods_Packstation_Abholcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Packstation_Abholcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +131,7 @@
 		55482E6F265974C6009F6B5E = {
 			isa = PBXGroup;
 			children = (
+				55A1F6032669708A0097D076 /* Localizable.strings */,
 				55482E7A265974C6009F6B5E /* Packstation Abholcode */,
 				55482E922659751D009F6B5E /* Packstation Abholcode Watch */,
 				55482EA12659751D009F6B5E /* Packstation Abholcode Watch Extension */,
@@ -294,6 +299,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 55482E6F265974C6009F6B5E;
 			productRefGroup = 55482E79265974C6009F6B5E /* Products */;
@@ -313,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55482E88265974C8009F6B5E /* LaunchScreen.storyboard in Resources */,
+				55A1F6012669708A0097D076 /* Localizable.strings in Resources */,
 				55482E85265974C8009F6B5E /* Assets.xcassets in Resources */,
 				55482E83265974C6009F6B5E /* Main.storyboard in Resources */,
 			);
@@ -513,8 +520,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				55482E942659751D009F6B5E /* Base */,
+				55A1F5FE26696ECA0097D076 /* de */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		55A1F6032669708A0097D076 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55A1F6022669708A0097D076 /* en */,
+				55A1F6042669708D0097D076 /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -524,6 +541,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -585,6 +603,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

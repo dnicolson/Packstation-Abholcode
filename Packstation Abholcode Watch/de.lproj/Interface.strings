@@ -1,0 +1,6 @@
+
+/* Class = "WKInterfaceLabel"; text = "Sign in to Gmail on the paired iPhone to display the Abholcode."; ObjectID = "b4a-be-u06"; */
+"b4a-be-u06.text" = "Melde dich bei Gmail auf dem gekoppelten iPhone an, um den Abholcode anzuzeigen.";
+
+/* Class = "WKInterfaceLabel"; text = "Abholcode"; ObjectID = "naQ-xC-q9i"; */
+"naQ-xC-q9i.text" = "Abholcode";

@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Packstation Abholcode
+
+  Created by Dave Nicolson on 03.06.21.
+  
+*/
+
+"Intro" = "Du musst dich bei Gmail anmelden, damit der Abholcode gefunden werden kann.\n\nÖffne die Abholcode-App auf einer gekoppelten Apple Watch, bevor du dich anmeldest, um den Abholcode verfügbar zu machen.";
+"Abholcode available" = "Der Abholcode ist auch verfügbar auf ";
+"Sign out" = "Abmelden";
+"Apple Watch connecting" = "Ich versuche, mich mit der Apple Watch zu verbinden...\n\nVersichere dich, dass die Abholcode App auf der Apple Watch geöffnet ist.";
+"Apple Watch success" = " wurde erfolgreich eingerichtet.";
+"Apple Watch connection error part 1" = "Bei der Kommunikation mit der Apple Watch ist ein Fehler aufgetreten:\n\n\"";
+"Apple Watch connection error part 2" = "\"\n\nStelle sicher, dass die Abholcode-App auf der Apple Watch geöffnet ist und melde dich erneut an.";

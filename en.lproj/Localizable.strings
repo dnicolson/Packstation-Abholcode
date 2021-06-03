@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Packstation Abholcode
+
+  Created by Dave Nicolson on 03.06.21.
+  
+*/
+
+"Intro" = "You need to sign in to Gmail to allow the Abholcode to be found.\n\nOpen the Abholcode app on a paired Apple Watch before signing in to make the Abholcode available.";
+"Abholcode available" = "The Abholcode is also available on ";
+"Sign out" = "Sign out";
+"Apple Watch connecting" = "Attempting to connect to Apple Watch...\n\nEnsure that the Abholcode app is open on the Apple Watch.";
+"Apple Watch success" = " has been setup successfully.";
+"Apple Watch connection error part 1" = "An error occurred communicating with the Apple Watch:\n\n\"";
+"Apple Watch connection error part 2" = "\"\n\nEnsure that the Abholcode app is open on the Apple Watch and sign in again.";
