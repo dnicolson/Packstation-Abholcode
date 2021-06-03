@@ -41,7 +41,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
     var headerLabel: UILabel!
     var introLabel: UILabel!
-    var defaultIntroText: String = "You need to sign in to Gmail to allow the Abholcode to be found.\n\nThe Abholcode will also be available on a paired Apple Watch."
+    var defaultIntroText: String = "You need to sign in to Gmail to allow the Abholcode to be found.\n\nOpen the Abholcode app on a paired Apple Watch before signing in to make the Abholcode available."
     var signInButton: GIDSignInButton!
     var signOutButton: UIButton!
     var abholcodeView: UIView!
@@ -60,7 +60,7 @@ class ViewController: UIViewController, WCSessionDelegate {
     @objc func userDidSignInGoogle(_ notification: Notification) {
         updateScreen()
         updateAbholcode()
-        if (session!.isPaired) {
+        if (session!.isPaired && UserDefaults.standard.string(forKey: "AppleWatchName") == nil) {
             sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
         }
     }
