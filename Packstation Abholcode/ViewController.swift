@@ -131,6 +131,7 @@ class ViewController: UIViewController, WCSessionDelegate {
         introLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         introLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 60).isActive = true
         introLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        introLabel.isHidden = true
 
         signInButton = GIDSignInButton()
         view.addSubview(signInButton)
@@ -160,6 +161,7 @@ class ViewController: UIViewController, WCSessionDelegate {
         signOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
         signOutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         signOutButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        signOutButton.isHidden = true
 
         abholcodeView = UIView()
         abholcodeView.backgroundColor = .white
@@ -197,12 +199,15 @@ class ViewController: UIViewController, WCSessionDelegate {
                                                name: .signInGoogleCompleted,
                                                object: nil)
 
-        updateScreen()
-        updateAbholcode()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.introLabel.isHidden = false
+            self.updateScreen()
+            self.updateAbholcode()
 
-        if (session!.isPaired && appleWatchName == nil) {
-            if ((GIDSignIn.sharedInstance()!.currentUser) != nil) {
-                sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
+            if (self.session!.isPaired && appleWatchName == nil) {
+                if ((GIDSignIn.sharedInstance()!.currentUser) != nil) {
+                    self.sendKeychainItemToWatch(keychainItemData: self.getKeychainItemData()!)
+                }
             }
         }
     }
