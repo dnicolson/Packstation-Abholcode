@@ -22,6 +22,8 @@
 		55482EA92659751E009F6B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55482EA82659751E009F6B5E /* Assets.xcassets */; };
 		55482EAD2659751E009F6B5E /* Packstation Abholcode Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 55482E912659751D009F6B5E /* Packstation Abholcode Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55A1F6012669708A0097D076 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55A1F6032669708A0097D076 /* Localizable.strings */; };
+		55A1F606266AD17E0097D076 /* AbholcodeGmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1F605266AD17E0097D076 /* AbholcodeGmail.swift */; };
+		55A1F607266AD17E0097D076 /* AbholcodeGmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1F605266AD17E0097D076 /* AbholcodeGmail.swift */; };
 		A30F7A8CFD94378FFE880C27 /* Pods_Packstation_Abholcode_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39042FCB4A7B215F734D7AB /* Pods_Packstation_Abholcode_Watch_Extension.framework */; };
 		ED0D7D541C9B38A204154C10 /* Pods_Packstation_Abholcode_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729A8CD001CD5AC21F7C903E /* Pods_Packstation_Abholcode_Watch.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +93,7 @@
 		55A1F5FE26696ECA0097D076 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Interface.strings; sourceTree = "<group>"; };
 		55A1F6022669708A0097D076 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55A1F6042669708D0097D076 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55A1F605266AD17E0097D076 /* AbholcodeGmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AbholcodeGmail.swift; path = "Packstation Abholcode/Helpers/AbholcodeGmail.swift"; sourceTree = SOURCE_ROOT; };
 		57476D8F92AE0D7C50A92E70 /* Pods-Packstation Abholcode Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packstation Abholcode Watch Extension.debug.xcconfig"; path = "Target Support Files/Pods-Packstation Abholcode Watch Extension/Pods-Packstation Abholcode Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		6BEDD287E638EDAF84684716 /* Pods-Packstation Abholcode Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packstation Abholcode Watch.release.xcconfig"; path = "Target Support Files/Pods-Packstation Abholcode Watch/Pods-Packstation Abholcode Watch.release.xcconfig"; sourceTree = "<group>"; };
 		6C00E8013CEB09AB31B1595B /* Pods_Packstation_Abholcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Packstation_Abholcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +157,7 @@
 		55482E7A265974C6009F6B5E /* Packstation Abholcode */ = {
 			isa = PBXGroup;
 			children = (
+				55A1F608266AD5100097D076 /* Helpers */,
 				55482E7B265974C6009F6B5E /* AppDelegate.swift */,
 				55482E7D265974C6009F6B5E /* SceneDelegate.swift */,
 				55482E7F265974C6009F6B5E /* ViewController.swift */,
@@ -184,6 +188,14 @@
 				55482EAA2659751E009F6B5E /* Info.plist */,
 			);
 			path = "Packstation Abholcode Watch Extension";
+			sourceTree = "<group>";
+		};
+		55A1F608266AD5100097D076 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				55A1F605266AD17E0097D076 /* AbholcodeGmail.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		718ACDD53B139AA6FBC02E82 /* Frameworks */ = {
@@ -471,6 +483,7 @@
 			files = (
 				55482E80265974C6009F6B5E /* ViewController.swift in Sources */,
 				55482E7C265974C6009F6B5E /* AppDelegate.swift in Sources */,
+				55A1F606266AD17E0097D076 /* AbholcodeGmail.swift in Sources */,
 				55482E7E265974C6009F6B5E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +494,7 @@
 			files = (
 				55482EA52659751D009F6B5E /* ExtensionDelegate.swift in Sources */,
 				55482EA32659751D009F6B5E /* InterfaceController.swift in Sources */,
+				55A1F607266AD17E0097D076 /* AbholcodeGmail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
