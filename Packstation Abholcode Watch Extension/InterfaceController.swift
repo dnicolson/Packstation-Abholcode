@@ -12,14 +12,37 @@ import GTMAppAuth
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-    }
-
     @IBOutlet weak var introText: WKInterfaceLabel!
     @IBOutlet weak var abholcodeGroup: WKInterfaceGroup!
     @IBOutlet weak var abholcode: WKInterfaceLabel!
 
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    }
+
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        var reply = Data()
+        if messageData.count == 0 {
+            GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
+        } else if addToKeychain(messageData) {
+            reply = WKInterfaceDevice.current().name.data(using: .utf8)!
+        }
+
+        updateAbholcode()
+        replyHandler(reply)
+    }
+
     let session = WCSession.default
+
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
+        session.delegate = self
+        session.activate()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationIsActive(_:)),
+                                               name: .applicationIsActive,
+                                               object: nil)
+    }
 
     @objc func applicationIsActive(_ notification: Notification) {
         updateAbholcode()
@@ -39,17 +62,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             introText.setHidden(false)
             abholcodeGroup.setHidden(true)
         }
-    }
-
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-        session.delegate = self
-        session.activate()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationIsActive(_:)),
-                                               name: .applicationIsActive,
-                                               object: nil)
     }
 
     func addToKeychain(_ value: Data) -> Bool {
@@ -76,17 +88,5 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             return false
         }
         return true
-    }
-
-    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
-        var reply = Data()
-        if messageData.count == 0 {
-            GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
-        } else if addToKeychain(messageData) {
-            reply = WKInterfaceDevice.current().name.data(using: .utf8)!
-        }
-
-        updateAbholcode()
-        replyHandler(reply)
     }
 }

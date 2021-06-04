@@ -11,6 +11,14 @@ import GTMAppAuth
 import WatchConnectivity
 
 class ViewController: UIViewController, WCSessionDelegate {
+
+    var headerLabel: UILabel!
+    var introLabel: UILabel!
+    var signInButton: GIDSignInButton!
+    var signOutButton: UIButton!
+    var abholcodeView: UIView!
+    var session: WCSession?
+
     func sessionDidBecomeInactive(_ session: WCSession) {
     }
 
@@ -20,37 +28,16 @@ class ViewController: UIViewController, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
 
-    var headerLabel: UILabel!
-    var introLabel: UILabel!
-    var signInButton: GIDSignInButton!
-    var signOutButton: UIButton!
-    var abholcodeView: UIView!
-    var session: WCSession?
-
-    @objc func signOutButtonTapped(_ sender: AnyObject) {
-        GIDSignIn.sharedInstance().signOut()
-        GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
-        if session!.isPaired {
-            sendKeychainItemToWatch(keychainItemData: Data())
-            UserDefaults.standard.removeObject(forKey: "AppleWatchName")
-        }
-        updateScreen()
-    }
-
-    @objc func userDidSignInGoogle(_ notification: Notification) {
-        updateScreen()
-        updateAbholcode()
-        if session!.isPaired && UserDefaults.standard.string(forKey: "AppleWatchName") == nil {
-            sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
-        }
-    }
-
     override var shouldAutorotate: Bool {
         return false
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+
+    @objc func applicationWillEnterForeground(_ notification: NSNotification) {
+        updateAbholcode()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -68,8 +55,22 @@ class ViewController: UIViewController, WCSessionDelegate {
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc func applicationWillEnterForeground(_ notification: NSNotification) {
+    @objc func signOutButtonTapped(_ sender: AnyObject) {
+        GIDSignIn.sharedInstance().signOut()
+        GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
+        if session!.isPaired {
+            sendKeychainItemToWatch(keychainItemData: Data())
+            UserDefaults.standard.removeObject(forKey: "AppleWatchName")
+        }
+        updateScreen()
+    }
+
+    @objc func userDidSignInGoogle(_ notification: Notification) {
+        updateScreen()
         updateAbholcode()
+        if session!.isPaired && UserDefaults.standard.string(forKey: "AppleWatchName") == nil {
+            sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
+        }
     }
 
     override func viewDidLoad() {
