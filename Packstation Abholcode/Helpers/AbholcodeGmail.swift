@@ -29,7 +29,7 @@ extension String {
 
 func queryAbholcodeGmail(authorizer: GTMFetcherAuthorizationProtocol, completion : @escaping (String) -> Void) {
     let gmailService = GTLRGmailService.init()
-    //let authorizer = GIDSignIn.sharedInstance()?.currentUser?.authentication?.fetcherAuthorizer()
+    // let authorizer = GIDSignIn.sharedInstance()?.currentUser?.authentication?.fetcherAuthorizer()
     gmailService.authorizer = authorizer
 
     let listQuery = GTLRGmailQuery_UsersMessagesList.query(withUserId: "me")
@@ -43,7 +43,7 @@ func queryAbholcodeGmail(authorizer: GTMFetcherAuthorizationProtocol, completion
             let messageQuery = GTLRGmailQuery_UsersMessagesGet.query(withUserId: "me", identifier: identifier ?? "")
             messageQuery.identifier = identifier
 
-            gmailService.executeQuery(messageQuery) { (ticket, response, error) in
+            gmailService.executeQuery(messageQuery) { (_, response, error) in
                 if response != nil {
                     let message = response as! GTLRGmail_Message
                     let base64encodedData = message.payload?.parts?[0].parts?[0].body?.data!
@@ -51,8 +51,8 @@ func queryAbholcodeGmail(authorizer: GTMFetcherAuthorizationProtocol, completion
 
                     let pattern = "\n([0-9]{4})"
                     let regex = try! NSRegularExpression(pattern: pattern)
-                    let result = regex.firstMatch(in:str, range:NSMakeRange(0, str.utf16.count))
-                    let range = result!.range(at:1)
+                    let result = regex.firstMatch(in: str, range: NSRange(location: 0, length: str.utf16.count))
+                    let range = result!.range(at: 1)
                     if let swiftRange = Range(range, in: str) {
                         let name = str[swiftRange]
                         print("Abholcode:", name)

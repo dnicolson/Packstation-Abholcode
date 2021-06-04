@@ -30,7 +30,7 @@ class ViewController: UIViewController, WCSessionDelegate {
     @objc func signOutButtonTapped(_ sender: AnyObject) {
         GIDSignIn.sharedInstance().signOut()
         GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
-        if (session!.isPaired) {
+        if session!.isPaired {
             sendKeychainItemToWatch(keychainItemData: Data())
             UserDefaults.standard.removeObject(forKey: "AppleWatchName")
         }
@@ -40,7 +40,7 @@ class ViewController: UIViewController, WCSessionDelegate {
     @objc func userDidSignInGoogle(_ notification: Notification) {
         updateScreen()
         updateAbholcode()
-        if (session!.isPaired && UserDefaults.standard.string(forKey: "AppleWatchName") == nil) {
+        if session!.isPaired && UserDefaults.standard.string(forKey: "AppleWatchName") == nil {
             sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
         }
     }
@@ -97,7 +97,7 @@ class ViewController: UIViewController, WCSessionDelegate {
         headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
 
         introLabel = UILabel()
-        if (appleWatchName != nil) {
+        if appleWatchName != nil {
             introLabel.text = NSLocalizedString("Abholcode available", comment: "Availability text after successful pairing") + appleWatchName! + "."
         } else {
             introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
@@ -184,8 +184,8 @@ class ViewController: UIViewController, WCSessionDelegate {
             self.updateScreen()
             self.updateAbholcode()
 
-            if (self.session!.isPaired && appleWatchName == nil) {
-                if ((GIDSignIn.sharedInstance()!.currentUser) != nil) {
+            if self.session!.isPaired && appleWatchName == nil {
+                if (GIDSignIn.sharedInstance()!.currentUser) != nil {
                     self.sendKeychainItemToWatch(keychainItemData: self.getKeychainItemData()!)
                 }
             }
@@ -222,7 +222,7 @@ class ViewController: UIViewController, WCSessionDelegate {
                                        kSecAttrAccount as String: "OAuth",
                                        kSecAttrService as String: "Gmail",
                                        kSecReturnData as String: kCFBooleanTrue!,
-                                       kSecMatchLimit as String : kSecMatchLimitOne]
+                                       kSecMatchLimit as String: kSecMatchLimitOne]
 
         var item: CFTypeRef?
         let status = SecItemCopyMatching(getquery as CFDictionary, &item)
@@ -245,7 +245,7 @@ class ViewController: UIViewController, WCSessionDelegate {
         session!.sendMessageData(keychainItemData, replyHandler: { (data) in
             let appleWatchName = String(data: data, encoding: .utf8)
             DispatchQueue.main.async {
-                if (keychainItemData.count > 0 && appleWatchName != nil) {
+                if keychainItemData.count > 0 && appleWatchName != nil {
                     UserDefaults.standard.set(appleWatchName, forKey: "AppleWatchName")
                     self.introLabel.text = appleWatchName! + NSLocalizedString("Apple Watch success", comment: "Successful connection to Apple Watch")
                 } else {
@@ -255,17 +255,17 @@ class ViewController: UIViewController, WCSessionDelegate {
             }
         }) { (error) in
             DispatchQueue.main.async {
-                if (keychainItemData.count > 0) {
-                    if (retries == -1) {
+                if keychainItemData.count > 0 {
+                    if retries == -1 {
                         self.sendKeychainItemToWatch(keychainItemData: keychainItemData, retries: 10)
                     }
-                    if (retries! > 0) {
+                    if retries! > 0 {
                         let newRetries = retries! - 1
                         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                             self.sendKeychainItemToWatch(keychainItemData: keychainItemData, retries: newRetries)
                         }
                     }
-                    if (retries == 0) {
+                    if retries == 0 {
                         self.introLabel.text = NSLocalizedString("Apple Watch connection error part 1", comment: "Attempting to connect to Apple Watch failed part 1") + error.localizedDescription + NSLocalizedString("Apple Watch connection error part 2", comment: "Attempting to connect to Apple Watch failed part 2")
                     }
                 } else {
@@ -275,4 +275,3 @@ class ViewController: UIViewController, WCSessionDelegate {
         }
     }
 }
-

@@ -29,7 +29,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         NSKeyedUnarchiver.setClass(GTMAppAuthFetcherAuthorization.self, forClassName: "GTMAppAuthFetcherAuthorizationWithEMMSupport")
         let authorizer = GTMAppAuthFetcherAuthorization(fromKeychainForName: "Gmail")
 
-        if (authorizer != nil) {
+        if authorizer != nil {
             queryAbholcodeGmail(authorizer: authorizer!) {(code: String) in
                 self.abholcode.setText(code)
                 self.introText.setHidden(true)
@@ -62,13 +62,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             kSecValueData as String: value
         ]
 
-        var result: CFTypeRef? = nil
+        var result: CFTypeRef?
         let status = SecItemAdd(attributes as CFDictionary, &result)
         if status == errSecSuccess {
             print("Password successfully added to Keychain.")
         } else {
             if let error: String = SecCopyErrorMessageString(status, nil) as String? {
-                if (error == "The specified item already exists in the keychain.") {
+                if error == "The specified item already exists in the keychain." {
                     return true
                 }
                 print(error)
@@ -80,9 +80,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
         var reply = Data()
-        if (messageData.count == 0) {
+        if messageData.count == 0 {
             GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
-        } else if (addToKeychain(messageData)) {
+        } else if addToKeychain(messageData) {
             reply = WKInterfaceDevice.current().name.data(using: .utf8)!
         }
 
