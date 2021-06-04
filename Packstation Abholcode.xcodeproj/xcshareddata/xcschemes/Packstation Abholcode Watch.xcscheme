@@ -54,8 +54,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Abholcode">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "55482E902659751D009F6B5E"
@@ -63,7 +65,7 @@
             BlueprintName = "Packstation Abholcode Watch"
             ReferencedContainer = "container:Packstation Abholcode.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -71,8 +73,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Abholcode">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "55482E902659751D009F6B5E"
@@ -80,7 +84,16 @@
             BlueprintName = "Packstation Abholcode Watch"
             ReferencedContainer = "container:Packstation Abholcode.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "55482E902659751D009F6B5E"
+            BuildableName = "Packstation Abholcode Watch.app"
+            BlueprintName = "Packstation Abholcode Watch"
+            ReferencedContainer = "container:Packstation Abholcode.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

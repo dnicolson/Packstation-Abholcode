@@ -6,10 +6,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Packstation-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Packstation_Abholcode_Watch" customModuleProvider="target">
+                <controller title="Packstation" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Packstation_Abholcode_Watch" customModuleProvider="target">
                     <items>
                         <label alignment="left" hidden="YES" text="Sign in to Gmail on the paired iPhone to display the Abholcode." textAlignment="center" numberOfLines="5" id="b4a-be-u06"/>
                         <group width="100" height="60" alignment="center" verticalAlignment="center" layout="vertical" radius="5" id="uhs-lQ-wiO">
@@ -36,6 +36,7 @@
             <point key="canvasLocation" x="-26" y="-75"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="icon-packstation-red-watch-cropped" width="400" height="250"/>
     </resources>
