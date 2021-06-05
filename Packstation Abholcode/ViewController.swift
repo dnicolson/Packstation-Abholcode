@@ -242,7 +242,9 @@ class ViewController: UIViewController, WCSessionDelegate {
     }
 
     func sendKeychainItemToWatch(keychainItemData: Data, retries: Int? = -1) {
-        introLabel.text = NSLocalizedString("Apple Watch connecting", comment: "Attempting to connect to Apple Watch")
+        if keychainItemData.count > 0 {
+            introLabel.text = NSLocalizedString("Apple Watch connecting", comment: "Attempting to connect to Apple Watch")
+        }
         session!.sendMessageData(keychainItemData, replyHandler: { (data) in
             let appleWatchName = String(data: data, encoding: .utf8)
             DispatchQueue.main.async {
