@@ -99,7 +99,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
         introLabel = UILabel()
         if appleWatchName != nil {
-            introLabel.text = NSLocalizedString("Abholcode available", comment: "Availability text after successful pairing") + appleWatchName! + "."
+            self.introLabel.text = String(format: NSLocalizedString("Abholcode available", comment: "Availability text after successful pairing"), appleWatchName!, UIDevice.current.name)
         } else {
             introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
         }
@@ -248,7 +248,7 @@ class ViewController: UIViewController, WCSessionDelegate {
             DispatchQueue.main.async {
                 if keychainItemData.count > 0 && appleWatchName != nil {
                     UserDefaults.standard.set(appleWatchName, forKey: "AppleWatchName")
-                    self.introLabel.text = appleWatchName! + NSLocalizedString("Apple Watch success", comment: "Successful connection to Apple Watch")
+                    self.introLabel.text = String(format: NSLocalizedString("Apple Watch success", comment: "Successful connection to Apple Watch"), appleWatchName!, UIDevice.current.name)
                 } else {
                     UserDefaults.standard.removeObject(forKey: "AppleWatchName")
                     self.introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
@@ -267,7 +267,7 @@ class ViewController: UIViewController, WCSessionDelegate {
                         }
                     }
                     if retries == 0 {
-                        self.introLabel.text = NSLocalizedString("Apple Watch connection error part 1", comment: "Attempting to connect to Apple Watch failed part 1") + error.localizedDescription + NSLocalizedString("Apple Watch connection error part 2", comment: "Attempting to connect to Apple Watch failed part 2")
+                        self.introLabel.text = String(format: NSLocalizedString("Apple Watch connection error", comment: "Attempting to connect to Apple Watch failed"), error.localizedDescription)
                     }
                 } else {
                     self.introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
