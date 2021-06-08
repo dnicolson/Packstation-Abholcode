@@ -62,6 +62,7 @@ class ViewController: UIViewController, WCSessionDelegate {
             sendKeychainItemToWatch(keychainItemData: Data())
             UserDefaults.standard.removeObject(forKey: "AppleWatchName")
         }
+        introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
         updateScreen()
     }
 
@@ -114,7 +115,6 @@ class ViewController: UIViewController, WCSessionDelegate {
         introLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         introLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 60).isActive = true
         introLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        introLabel.isHidden = true
 
         signInButton = GIDSignInButton()
         view.addSubview(signInButton)
@@ -181,24 +181,15 @@ class ViewController: UIViewController, WCSessionDelegate {
                                                selector: #selector(userDidSignInGoogle(_:)),
                                                name: .signInGoogleCompleted,
                                                object: nil)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.introLabel.isHidden = false
-            self.updateScreen()
-            self.updateAbholcode()
-
-            if self.session!.isPaired && appleWatchName == nil {
-                if (GIDSignIn.sharedInstance()!.currentUser) != nil {
-                    self.sendKeychainItemToWatch(keychainItemData: self.getKeychainItemData()!)
-                }
-            } else {
-                self.introLabel.text = NSLocalizedString("Intro Apple Watch", comment: "Intro text displayed after sign in about Apple Watch")
-            }
-        }
+        updateScreen()
+        updateAbholcode()
     }
 
     func updateScreen() {
         if GIDSignIn.sharedInstance()?.currentUser != nil {
+            if !session!.isPaired {
+                introLabel.text = NSLocalizedString("Intro Apple Watch", comment: "Intro text displayed after sign in about Apple Watch")
+            }
             signInButton.isHidden = true
             signOutButton.isHidden = false
         } else {
