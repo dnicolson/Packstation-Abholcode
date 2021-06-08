@@ -70,6 +70,8 @@ class ViewController: UIViewController, WCSessionDelegate {
         updateAbholcode()
         if session!.isPaired && UserDefaults.standard.string(forKey: "AppleWatchName") == nil {
             sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
+        } else {
+            introLabel.text = NSLocalizedString("Intro Apple Watch", comment: "Intro text displayed after sign in about Apple Watch")
         }
     }
 
@@ -99,7 +101,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
         introLabel = UILabel()
         if appleWatchName != nil {
-            self.introLabel.text = String(format: NSLocalizedString("Abholcode available", comment: "Availability text after successful pairing"), appleWatchName!, UIDevice.current.name)
+            introLabel.text = String(format: NSLocalizedString("Apple Watch available", comment: "Availability text after successful pairing"), appleWatchName!, UIDevice.current.name)
         } else {
             introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
         }
@@ -189,6 +191,8 @@ class ViewController: UIViewController, WCSessionDelegate {
                 if (GIDSignIn.sharedInstance()!.currentUser) != nil {
                     self.sendKeychainItemToWatch(keychainItemData: self.getKeychainItemData()!)
                 }
+            } else {
+                self.introLabel.text = NSLocalizedString("Intro Apple Watch", comment: "Intro text displayed after sign in about Apple Watch")
             }
         }
     }

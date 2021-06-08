@@ -6,9 +6,10 @@
   
 */
 
-"Intro" = "You need to sign in to Gmail to allow the Abholcode to be found.\n\nOpen the Abholcode app on a paired Apple Watch before signing in to make the Abholcode available.";
-"Abholcode available" = "The Abholcode is also available on %@ and is authorized to display without %@.";
+"Intro" = "You need to sign in to Gmail to allow the Abholcode to be found.";
+"Intro Apple Watch" = "Open the Abholcode app on a paired Apple Watch before signing in to make the Abholcode available.";
+"Apple Watch available" = "The Abholcode is also available on %@ and is authorized to display without %@.";
 "Apple Watch connecting" = "Attempting to connect to Apple Watch...\n\nEnsure that the Abholcode app is open on the Apple Watch.";
-"Apple Watch success" = "%@ has been setup successfully and is authorized to display without %@.";
+"Apple Watch success" = "%@ has been setup successfully and is authorized to display the Abholcode without %@.";
 "Apple Watch connection error" = "An error occurred communicating with the Apple Watch:\n\n\"%@\"\n\nEnsure that the Abholcode app is open on the Apple Watch and sign in again.";
 "Sign out" = "Sign out";
