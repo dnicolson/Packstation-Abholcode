@@ -101,6 +101,11 @@ class ViewController: UIViewController, WCSessionDelegate {
         headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
 
         introLabel = UILabel()
+        let attributedString = NSMutableAttributedString(string: "Attributed placeholder")
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 6
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        introLabel.attributedText = attributedString
         if appleWatchName != nil {
             introLabel.text = String(format: NSLocalizedString("Apple Watch available", comment: "Availability text after successful pairing"), appleWatchName!, UIDevice.current.name)
         } else {
