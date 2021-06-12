@@ -36,7 +36,7 @@ func queryAbholcodeGmail(authorizer: GTMFetcherAuthorizationProtocol, completion
     listQuery.q = "from:noreply.packstation@dhl.de subject:Abholcode"
     listQuery.labelIds = ["INBOX"]
 
-    gmailService.executeQuery(listQuery) { (ticket, response, error) in
+    gmailService.executeQuery(listQuery) { (_, response, error) in
         if response != nil {
             let response = response as! GTLRGmail_ListMessagesResponse
             let identifier = response.messages![0].identifier
