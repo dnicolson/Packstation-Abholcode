@@ -58,9 +58,9 @@ class ViewController: UIViewController, WCSessionDelegate {
     @objc func signOutButtonTapped(_ sender: AnyObject) {
         GIDSignIn.sharedInstance().signOut()
         GTMAppAuthFetcherAuthorization.removeFromKeychain(forName: "Gmail")
+        UserDefaults.standard.removeObject(forKey: "AppleWatchName")
         if session!.isPaired {
             sendKeychainItemToWatch(keychainItemData: Data())
-            UserDefaults.standard.removeObject(forKey: "AppleWatchName")
         }
         introLabel.text = NSLocalizedString("Intro", comment: "Intro text displayed before sign in")
         updateScreen()
