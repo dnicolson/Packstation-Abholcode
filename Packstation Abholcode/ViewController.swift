@@ -26,6 +26,9 @@ class ViewController: UIViewController, WCSessionDelegate {
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if session.activationState == .activated {
+            updateScreen()
+        }
     }
 
     override var shouldAutorotate: Bool {
@@ -198,9 +201,9 @@ class ViewController: UIViewController, WCSessionDelegate {
             signInButton.isHidden = true
             signOutButton.isHidden = false
         } else {
-            signInButton.isHidden = false
-            signOutButton.isHidden = true
-            abholcodeView.isHidden = true
+            signInButton?.isHidden = false
+            signOutButton?.isHidden = true
+            abholcodeView?.isHidden = true
         }
     }
 
