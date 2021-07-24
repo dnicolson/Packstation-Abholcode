@@ -682,7 +682,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dnicolson.Packstation-Abholcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -702,7 +702,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dnicolson.Packstation-Abholcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -721,7 +721,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dnicolson.Packstation-Abholcode.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -743,7 +743,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dnicolson.Packstation-Abholcode.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -764,7 +764,7 @@
 				DEVELOPMENT_TEAM = 6M5BCW6QH8;
 				IBSC_MODULE = Packstation_Abholcode_Watch_Extension;
 				INFOPLIST_FILE = "Packstation Abholcode Watch/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dnicolson.Packstation-Abholcode.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -785,7 +785,7 @@
 				DEVELOPMENT_TEAM = 6M5BCW6QH8;
 				IBSC_MODULE = Packstation_Abholcode_Watch_Extension;
 				INFOPLIST_FILE = "Packstation Abholcode Watch/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "dnicolson.Packstation-Abholcode.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dnicolson.Packstation-Abholcode.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
