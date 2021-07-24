@@ -27,7 +27,9 @@ class ViewController: UIViewController, WCSessionDelegate {
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if session.activationState == .activated {
-            updateScreen()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.updateScreen()
+            }
         }
     }
 
@@ -74,8 +76,6 @@ class ViewController: UIViewController, WCSessionDelegate {
         updateAbholcode()
         if session!.isPaired && UserDefaults.standard.string(forKey: "AppleWatchName") == nil {
             sendKeychainItemToWatch(keychainItemData: getKeychainItemData()!)
-        } else {
-            introLabel.text = NSLocalizedString("Intro Apple Watch", comment: "Intro text displayed after sign in about Apple Watch")
         }
     }
 
@@ -123,6 +123,7 @@ class ViewController: UIViewController, WCSessionDelegate {
         introLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         introLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 60).isActive = true
         introLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        introLabel.isHidden = true
 
         signInButton = GIDSignInButton()
         view.addSubview(signInButton)
@@ -189,13 +190,17 @@ class ViewController: UIViewController, WCSessionDelegate {
                                                selector: #selector(userDidSignInGoogle(_:)),
                                                name: .signInGoogleCompleted,
                                                object: nil)
-        updateScreen()
-        updateAbholcode()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.updateScreen()
+            self.updateAbholcode()
+        }
     }
 
     func updateScreen() {
+        introLabel.isHidden = false
         if GIDSignIn.sharedInstance()?.currentUser != nil {
-            if !session!.isPaired {
+            if UserDefaults.standard.string(forKey: "AppleWatchName") == nil {
                 introLabel.text = NSLocalizedString("Intro Apple Watch", comment: "Intro text displayed after sign in about Apple Watch")
             }
             signInButton.isHidden = true
