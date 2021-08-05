@@ -138,8 +138,8 @@ class ViewController: UIViewController, WCSessionDelegate {
         packstationImageView.translatesAutoresizingMaskIntoConstraints = false
         packstationImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         packstationImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25).isActive = true
-        packstationImageView.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        packstationImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        packstationImageView.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        packstationImageView.heightAnchor.constraint(equalToConstant: 280).isActive = true
 
         signOutButton = UIButton()
         signOutButton.layer.cornerRadius = 10
