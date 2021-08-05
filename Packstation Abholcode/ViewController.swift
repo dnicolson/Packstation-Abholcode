@@ -27,7 +27,7 @@ class ViewController: UIViewController, WCSessionDelegate {
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if session.activationState == .activated {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.async {
                 self.updateScreen()
             }
         }
@@ -191,15 +191,14 @@ class ViewController: UIViewController, WCSessionDelegate {
                                                name: .signInGoogleCompleted,
                                                object: nil)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.updateScreen()
-            self.updateAbholcode()
-        }
+        updateScreen()
+        updateAbholcode()
     }
 
     func updateScreen() {
         introLabel.isHidden = false
-        if GIDSignIn.sharedInstance()?.currentUser != nil {
+
+        if GIDSignIn.sharedInstance().hasPreviousSignIn() || GIDSignIn.sharedInstance()?.currentUser != nil {
             if UserDefaults.standard.string(forKey: "AppleWatchName") == nil {
                 introLabel.text = NSLocalizedString("Intro Apple Watch", comment: "Intro text displayed after sign in about Apple Watch")
             }
