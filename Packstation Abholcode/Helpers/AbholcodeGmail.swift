@@ -15,12 +15,16 @@ func queryAbholcodeGmail(authorizer: GTMFetcherAuthorizationProtocol, completion
     gmailService.authorizer = authorizer
 
     let listQuery = GTLRGmailQuery_UsersMessagesList.query(withUserId: "me")
-    listQuery.q = "from:noreply.packstation@dhl.de \"subject:Der Abholcode für Ihre Sendung\""
+    listQuery.q = "from:noreply@dhl.de \"subject:Der Abholcode für Ihre Packstation Sendung\""
     listQuery.labelIds = ["INBOX"]
 
     gmailService.executeQuery(listQuery) { (_, response, error) in
         if response != nil {
             let response = response as! GTLRGmail_ListMessagesResponse
+            guard response.resultSizeEstimate as! Int > 0 else {
+                return
+            }
+
             let identifier = response.messages![0].identifier
             let messageQuery = GTLRGmailQuery_UsersMessagesGet.query(withUserId: "me", identifier: identifier ?? "")
             messageQuery.identifier = identifier
