@@ -1,3 +1,10 @@
+
+---
+
+:warning: As of October 2021 DHL no longer sends the Abholcode via email, as a result this app no longer works.
+
+---
+
 # Packstation Abholcode
 
 An iOS app that includes a Watch Extension to display the DHL Packstation Abholcode on an Apple Watch without the need for the iOS device.
